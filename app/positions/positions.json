@@ -1,0 +1,49 @@
+{
+    "positions": [
+        {
+            "symbol": "SBIN",
+            "buy_date": "2026-07-03",
+            "buy_price": 1040.0,
+            "quantity": 2,
+            "capital": 2080.0,
+            "highest_price": 1040.0,
+            "current_price": 1040.0,
+            "current_value": 2080.0,
+            "pnl": 0.0,
+            "pnl_percent": 0.0,
+            "score": 93,
+            "status": "OPEN",
+            "last_updated": "2026-07-03"
+        },
+        {
+            "symbol": "SUNPHARMA",
+            "buy_date": "2026-07-03",
+            "buy_price": 1904.8,
+            "quantity": 1,
+            "capital": 1904.8,
+            "highest_price": 1904.8,
+            "current_price": 1904.8,
+            "current_value": 1904.8,
+            "pnl": 0.0,
+            "pnl_percent": 0.0,
+            "score": 93,
+            "status": "OPEN",
+            "last_updated": "2026-07-03"
+        },
+        {
+            "symbol": "ADANIPORTS",
+            "buy_date": "2026-07-03",
+            "buy_price": 1874.2,
+            "quantity": 1,
+            "capital": 1874.2,
+            "highest_price": 1874.2,
+            "current_price": 1874.2,
+            "current_value": 1874.2,
+            "pnl": 0.0,
+            "pnl_percent": 0.0,
+            "score": 93,
+            "status": "OPEN",
+            "last_updated": "2026-07-03"
+        }
+    ]
+}
