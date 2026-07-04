@@ -24,8 +24,13 @@ from app.config.settings import (
     load_watchlist
 )
 
+from app.logger.logger import log
+from app.logger.error_logger import log_error
+
 
 def run_daily():
+
+    log("ATLAS Started")
 
     settings = load_settings()
 
@@ -51,6 +56,13 @@ def run_daily():
 
             print(position)
 
+    log("Updated existing positions")
+
+    log(
+
+        f"Closed Positions : {len(sold_positions)}"
+
+    )
     # ==========================================
     # STEP 2 : Existing Holdings
     # ==========================================
@@ -118,7 +130,11 @@ def run_daily():
             }
 
         })
+    log(
 
+    f"Market Scan Completed : {len(all_stocks)} Stocks"
+
+    )
     # ==========================================
     # STEP 4 : Ignore Existing Holdings
     # ==========================================
@@ -156,6 +172,12 @@ def run_daily():
         capital
 
     )
+    
+    log(
+
+        f"New BUY Signals : {len(portfolio)}"
+
+    )
 
     # ==========================================
     # STEP 7 : Auto Add Positions
@@ -187,9 +209,24 @@ def run_daily():
 
     updated_positions = load_positions()
 
-    notify_summary(updated_positions)
+    open_positions = [
+        p for p in updated_positions
+        if p["status"] == "OPEN"
+    ]
+
+    notify_summary(open_positions)
+
+    log("Telegram Notifications Sent")
 
 
 if __name__ == "__main__":
 
-    run_daily()
+    try:
+
+        run_daily()
+
+    except Exception as error:
+
+        log_error(error)
+
+        raise

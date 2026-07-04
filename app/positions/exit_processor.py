@@ -1,3 +1,4 @@
+from app.journal.recorder import record_trade
 from datetime import datetime
 
 from app.positions.storage import (
@@ -88,6 +89,7 @@ def process_exits():
                 f" ({decision['reason']})"
 
             )
+            record_trade(position)
 
         updated_positions.append(position)
 

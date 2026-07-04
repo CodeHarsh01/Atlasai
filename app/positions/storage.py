@@ -1,7 +1,7 @@
 import json
-import os
+from pathlib import Path
 
-POSITIONS_FILE = "app/positions/positions.json"
+POSITIONS_FILE = Path(__file__).resolve().parent / "positions.json"
 
 
 def create_storage():
@@ -9,11 +9,12 @@ def create_storage():
     Create positions.json if it doesn't exist.
     """
 
-    if not os.path.exists(POSITIONS_FILE):
+    if not POSITIONS_FILE.exists():
 
         with open(
             POSITIONS_FILE,
-            "w"
+            "w",
+            encoding="utf-8"
         ) as file:
 
             json.dump(
@@ -32,7 +33,8 @@ def load_positions():
 
     with open(
         POSITIONS_FILE,
-        "r"
+        "r",
+        encoding="utf-8"
     ) as file:
 
         data = json.load(file)
@@ -47,7 +49,8 @@ def save_positions(positions):
 
     with open(
         POSITIONS_FILE,
-        "w"
+        "w",
+        encoding="utf-8"
     ) as file:
 
         json.dump(

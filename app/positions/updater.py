@@ -49,7 +49,11 @@ def update_positions():
 
             continue
 
-        current_price = prices[position["symbol"]]
+        current_price = prices.get(position["symbol"])
+
+        if current_price is None:
+
+            continue
 
         position = update_position_pnl(
 

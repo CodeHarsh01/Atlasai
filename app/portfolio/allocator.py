@@ -50,7 +50,7 @@ def allocate_capital(
 
         })
 
-        allocated_stocks = affordability_filter(allocated)
+    allocated_stocks = affordability_filter(allocated)
 
     return allocated_stocks
     

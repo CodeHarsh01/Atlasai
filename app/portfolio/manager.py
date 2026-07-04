@@ -1,8 +1,6 @@
 from app.portfolio.summary import create_summary
-from app.portfolio import summary
 from app.portfolio.redistribution import redistribute_capital
 from app.portfolio.optimizer import optimize_portfolio
-from app.config import settings
 from app.config.settings import load_settings
 from app.portfolio.allocator import allocate_capital
 from app.portfolio.position_size import calculate_position_size
@@ -124,4 +122,10 @@ def build_portfolio(stocks, capital):
         optimized
     )
 
-    return summary
+    print(f"\n📊 Portfolio Summary:")
+    print(f"   Capital: ₹{summary['capital']}")
+    print(f"   Invested: ₹{summary['invested']}")
+    print(f"   Cash Reserved: ₹{summary['cash_reserved']}")
+    print(f"   Positions: {summary['position_count']}")
+
+    return portfolio

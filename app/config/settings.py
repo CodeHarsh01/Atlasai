@@ -1,8 +1,14 @@
 import json
+from pathlib import Path
+
+CONFIG_DIR = Path(__file__).resolve().parent
+
 
 def load_settings():
+    settings_file = CONFIG_DIR / "settings.json"
+
     with open(
-        "app/config/settings.json",
+        settings_file,
         "r",
         encoding="utf-8"
     ) as file:
@@ -11,9 +17,12 @@ def load_settings():
 
     return settings
 
+
 def load_watchlist():
+    watchlist_file = CONFIG_DIR / "watchlist.json"
+
     with open(
-        "app/config/watchlist.json",
+        watchlist_file,
         "r",
         encoding="utf-8"
     ) as file:
@@ -21,5 +30,3 @@ def load_watchlist():
         watchlist = json.load(file)
 
     return watchlist["stocks"]
-
-    

@@ -1,3 +1,4 @@
+from app.utils.retry import retry
 import yfinance as yf
 
 
@@ -14,3 +15,18 @@ def fetch_stock_data(symbol, period, interval):
     data.columns = data.columns.get_level_values(0)
 
     return data
+
+
+def fetch_stock_data_safe(symbol, period, interval):
+
+    return retry(
+
+        fetch_stock_data,
+
+        symbol + ".NS",
+
+        period,
+
+        interval
+
+    )
