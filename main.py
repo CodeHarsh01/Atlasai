@@ -26,7 +26,6 @@ from app.config.settings import (
 
 from app.logger.logger import log
 from app.logger.error_logger import log_error
-from app.scheduler.market_schedule import should_run
 from app.scheduler.run_lock import already_ran, mark_run
 
 
@@ -219,6 +218,7 @@ def run_daily():
     notify_summary(open_positions)
 
     log("Telegram Notifications Sent")
+    log("ATLAS Finished Successfully")
 
 
 if __name__ == "__main__":
