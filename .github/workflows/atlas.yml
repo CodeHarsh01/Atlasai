@@ -2,11 +2,7 @@ name: ATLAS Daily Run
 
 on:
   schedule:
-
-    # Every 15 minutes during Indian market hours
-    - cron: "*/15 3-10 * * 1-5"
-
-  workflow_dispatch:
+  - cron: "*/5 3-10 * * 1-5"
 
 jobs:
 

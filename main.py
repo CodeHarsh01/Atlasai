@@ -225,11 +225,9 @@ if __name__ == "__main__":
 
     try:
 
-        if should_run():
+        if not should_run():
 
-            print("Trading window detected.")
-
-            run_daily()
+            print("Outside trading window. Exiting...")
 
         elif already_ran():
 
