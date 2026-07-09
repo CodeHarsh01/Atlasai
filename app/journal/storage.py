@@ -1,34 +1,34 @@
-import json
-from pathlib import Path
-
-JOURNAL_FILE = Path(__file__).resolve().parent / "trades.json"
+from app.database.mongo import trades
 
 
-def load_journal():
+def load_trades():
 
-    if not JOURNAL_FILE.exists():
+    return list(
 
-        return []
+        trades.find(
 
-    with open(
-        JOURNAL_FILE,
-        "r",
-        encoding="utf-8"
-    ) as file:
+            {},
 
-        return json.load(file)
+            {
 
+                "_id": 0
 
-def save_journal(journal):
+            }
 
-    with open(
-        JOURNAL_FILE,
-        "w",
-        encoding="utf-8"
-    ) as file:
-
-        json.dump(
-            journal,
-            file,
-            indent=4
         )
+
+    )
+
+
+def save_trades(all_trades):
+
+    trades.delete_many({})
+
+    if all_trades:
+
+        trades.insert_many(all_trades)
+
+
+def add_trade(trade):
+
+    trades.insert_one(trade)
