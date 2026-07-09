@@ -1,12 +1,11 @@
-import json
-from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-LOCK_FILE = Path("run_lock.json")
+from app.database.mongo import run_lock
 
 
 def current_session():
+
     now = datetime.now(ZoneInfo("Asia/Kolkata"))
 
     if now.hour < 12:
@@ -16,43 +15,43 @@ def current_session():
 
 
 def already_ran():
+
     today = datetime.now(
         ZoneInfo("Asia/Kolkata")
     ).strftime("%Y-%m-%d")
 
     session = current_session()
 
-    if not LOCK_FILE.exists():
+    record = run_lock.find_one({
+        "date": today
+    })
+
+    if not record:
         return False
 
-    with open(LOCK_FILE, "r") as file:
-        data = json.load(file)
-
-    return (
-        data.get(today, {})
-        .get(session, False)
-    )
+    return record.get(session, False)
 
 
 def mark_run():
+
     today = datetime.now(
         ZoneInfo("Asia/Kolkata")
     ).strftime("%Y-%m-%d")
 
     session = current_session()
 
-    if LOCK_FILE.exists():
+    run_lock.update_one(
 
-        with open(LOCK_FILE, "r") as file:
-            data = json.load(file)
+        {
+            "date": today
+        },
 
-    else:
-        data = {}
+        {
+            "$set": {
+                session: True
+            }
+        },
 
-    if today not in data:
-        data[today] = {}
+        upsert=True
 
-    data[today][session] = True
-
-    with open(LOCK_FILE, "w") as file:
-        json.dump(data, file, indent=4)
+    )
