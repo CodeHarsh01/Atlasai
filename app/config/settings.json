@@ -31,7 +31,7 @@
     "cash_reserve_percent": 10,
     "test_mode": true,
      "auto_add_positions": true,
-     "time_stop_days": 20,
+     "time_stop_days": 20
     
 }
 
