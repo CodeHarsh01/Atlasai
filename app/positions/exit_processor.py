@@ -1,4 +1,4 @@
-ifrom datetime import datetime
+from datetime import datetime
 
 from app.journal.recorder import record_trade
 
